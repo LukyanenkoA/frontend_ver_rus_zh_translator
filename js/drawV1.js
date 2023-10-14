@@ -1,10 +1,8 @@
-//code from hanzilookupdemo
-let _filesToLoad;
+
 $(document).ready(function () {
     // Only fetch data (large, takes long) when the page has loaded
-    _filesToLoad = 1;
-   // HanziLookup.init("mmah", "C:/c_work/HanziLookupJS/dist/mmah.json");
-});
+    HanziLookup.init("mmah", "js/mmah.json");
+  });
 //end of code from hanzilookupdemo
 
 window.addEventListener("DOMContentLoaded", function (event) {
@@ -14,12 +12,12 @@ window.addEventListener("DOMContentLoaded", function (event) {
     // Fetches hand-drawn input from drawing board and looks up Hanzi
     function lookup() {
         // Decompose character from drawing board
-        let analyzedChar = new HanziLookup.AnalyzedCharacter(canvas.cloneStrokes());
-        // Look up with original HanziLookup data
+        var analyzedChar = new HanziLookup.AnalyzedCharacter(_drawingBoard.cloneStrokes());
         // Look up with MMAH data
-        let matcherMMAH = new HanziLookup.Matcher("mmah");
-            matcherMMAH.match(analyzedChar, 8, function(matches) {
-                showResults($("kanji_info2"), matches);
+        var matcherMMAH = new HanziLookup.Matcher("mmah");
+        matcherMMAH.match(analyzedChar, 8, function(matches) {
+            // The matches array contains results, best first
+            showResults($("kanji_info2"), matches);
         });
     }
 
