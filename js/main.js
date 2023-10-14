@@ -112,8 +112,8 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .then((data) => {
                 console.log(data);
                 if(data.pinyin){
-                    result.value = `перевод на английский: ${data.english}`;
-                    inp.value = `упрощенный иероглиф: ${inpWord}\nпиньинь: ${data.pinyin}\nтрадиционный иероглиф: ${data.traditional}`;
+                    result.value = `${data.english}`;
+                    inp.value = `${inpWord} [${data.traditional}]\n/${data.pinyin}/`;
                 }
                 else result.value = `Такого слова нет`;
 
