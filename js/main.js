@@ -98,20 +98,28 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .catch(() => {
                 result.innerHTML = `<h3 class="error">Couldn't Find The Word</h3>`;
             });
-    });*/
+    });
+    
+    removed 
+    \nуровень hsk: ${data.hsk}*/
     const url = "/api/words/";
     const result = document.getElementById("output");
+    const inp = document.getElementById("input");
     b.addEventListener("click", () => {
         let inpWord = document.getElementById("text-input").value;
         fetch(`${url}${inpWord}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                result.value = 
-                `упрощенный иероглиф: ${inpWord}\nтрадиционный иероглиф: ${data.traditional}\nпиньинь: ${data.pinyin}\nперевод на английский: ${data.english}\nуровень hsk: ${data.hsk}`;
+                if(data.pinyin){
+                    result.value = `перевод на английский: ${data.english}`;
+                    inp.value = `упрощенный иероглиф: ${inpWord}\nпиньинь: ${data.pinyin}\nтрадиционный иероглиф: ${data.traditional}`;
+                }
+                else result.value = `Такого слова нет`;
+
             })
             .catch(() => {
-                result.value = `Такого слова нет`;
+                result.value = `Ошибка`;
             });
     });
 });
