@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
         var matcherMMAH = new HanziLookup.Matcher("mmah");
         matcherMMAH.match(analyzedChar, 8, function(matches) {
             // The matches array contains results, best first
-            showResults($("kanji_info2"), matches);
+            showResults($("kanji_info"), matches);
         });
     }
 
