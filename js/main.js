@@ -104,7 +104,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
     \nуровень hsk: ${data.hsk}*/
     const url = "/api/words/";
     const result = document.getElementById("output");
-    const inp = document.getElementById("input");
+    const inp = document.getElementById("text-input");
     b.addEventListener("click", () => {
         let inpWord = document.getElementById("text-input").value;
         fetch(`${url}${inpWord}`)
