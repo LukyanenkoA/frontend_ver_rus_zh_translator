@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
     // Fetches hand-drawn input from drawing board and looks up Hanzi
     function lookup() {
         // Decompose character from drawing board
-        var analyzedChar = new HanziLookup.AnalyzedCharacter(_drawingBoard.cloneStrokes());
+        var analyzedChar = new HanziLookup.AnalyzedCharacter(_drawkanji-canvas.cloneStrokes());
         // Look up with MMAH data
         var matcherMMAH = new HanziLookup.Matcher("mmah");
         matcherMMAH.match(analyzedChar, 8, function(matches) {
