@@ -1,34 +1,34 @@
 
-$(document).ready(function () {
-    // Only fetch data (large, takes long) when the page has loaded
-    HanziLookup.init("mmah", "js/mmah.json");
-  });
-//end of code from hanzilookupdemo
+// $(document).ready(function () {
+//     // Only fetch data (large, takes long) when the page has loaded
+//     HanziLookup.init("mmah", "js/mmah.json");
+//   });
+// //end of code from hanzilookupdemo
 
 window.addEventListener("DOMContentLoaded", function (event) {
 
 
-    //code from hanzilookupdemo
-    // Fetches hand-drawn input from drawing board and looks up Hanzi
-    function lookup() {
-        // Decompose character from drawing board
-        var analyzedChar = new HanziLookup.AnalyzedCharacter(_drawkanji-canvas.cloneStrokes());
-        // Look up with MMAH data
-        var matcherMMAH = new HanziLookup.Matcher("mmah");
-        matcherMMAH.match(analyzedChar, 8, function(matches) {
-            // The matches array contains results, best first
-            showResults($("kanji_info"), matches);
-        });
-    }
+    // //code from hanzilookupdemo
+    // // Fetches hand-drawn input from drawing board and looks up Hanzi
+    // function lookup() {
+    //     // Decompose character from drawing board
+    //     var analyzedChar = new HanziLookup.AnalyzedCharacter(_drawkanji-canvas.cloneStrokes());
+    //     // Look up with MMAH data
+    //     var matcherMMAH = new HanziLookup.Matcher("mmah");
+    //     matcherMMAH.match(analyzedChar, 8, function(matches) {
+    //         // The matches array contains results, best first
+    //         showResults($("kanji_info"), matches);
+    //     });
+    // }
 
-    // Populates UI with (ordered) Hanzi matches
-    function showResults(elmHost, matches) {
-        elmHost.html("");
-        for (let i = 0; i != matches.length; ++i) {
-            elmHost.append("<span>" + matches[i].character + "</span>");
-        }
-    }
-    //end of code from hanzilookupdemo
+    // // Populates UI with (ordered) Hanzi matches
+    // function showResults(elmHost, matches) {
+    //     elmHost.html("");
+    //     for (let i = 0; i != matches.length; ++i) {
+    //         elmHost.append("<span>" + matches[i].character + "</span>");
+    //     }
+    // }
+    // //end of code from hanzilookupdemo
 
 
     //Initial references

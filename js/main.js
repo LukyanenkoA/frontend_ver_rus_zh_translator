@@ -121,6 +121,20 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .catch(() => {
                 result.value = `Ошибка`;
             });
+        const url2 = "/api/words_rus/";
+        fetch(`${url2}${inpWord}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                if(data.pinyin){
+                    result.value += `${data.russian}`;
+                }
+                else result.value = `Такого слова нет`;
+
+            })
+            .catch(() => {
+                result.value = `Ошибка`;
+            });   
     });
 });
 
