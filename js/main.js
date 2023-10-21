@@ -102,39 +102,34 @@ window.addEventListener("DOMContentLoaded", function (event) {
     
     removed 
     \nуровень hsk: ${data.hsk}*/
-    const url = "/api/words/";
+    const url = "https://shoky13.ayarayarovich.tech/api/words_rus/";
+    const url2 = "https://shoky13.ayarayarovich.tech/api/words/";
     const result = document.getElementById("output");
     const inp = document.getElementById("text-input");
     b.addEventListener("click", () => {
         let inpWord = document.getElementById("text-input").value;
-        fetch(`${url}${inpWord}`)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                if(data.pinyin){
-                    result.value = `${data.english}`;
-                    inp.value = `${inpWord} [${data.traditional}]\n/${data.pinyin}/`;
-                }
-                else result.value = `Такого слова нет`;
-
-            })
-            .catch(() => {
-                result.value = `Ошибка`;
-            });
-        const url2 = "/api/words_rus/";
+        
         fetch(`${url2}${inpWord}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                if(data.pinyin){
-                    result.value += `${data.russian}`;
-                }
-                else result.value = `Такого слова нет`;
+                result.value = result.value + `\n\n${data.english}`;
+                inp.value = `${inpWord} [${data.traditional}]\n/${data.pinyin}/`;
 
             })
             .catch(() => {
                 result.value = `Ошибка`;
-            });   
+            }); 
+        fetch(`${url}${inpWord}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                result.value = `${data.russian}`;
+
+            })
+            .catch(() => {
+                result.value = `Ошибка`;
+            });  
     });
 });
 
