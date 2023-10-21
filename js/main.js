@@ -133,7 +133,6 @@ window.addEventListener("DOMContentLoaded", function (event) {
 
             })
             .catch(() => {
-                result.value = `Ошибка`;
             });   
     });
 });
