@@ -7,7 +7,7 @@
 
 window.addEventListener("DOMContentLoaded", function (event) {
 
-
+    
     // //code from hanzilookupdemo
     // // Fetches hand-drawn input from drawing board and looks up Hanzi
     // function lookup() {
@@ -201,17 +201,16 @@ window.addEventListener("DOMContentLoaded", function (event) {
     cancelLastStrokeButton.addEventListener("click", () => {
         cancelLastStroke_bool = true;
         undoLastStroke();
-        lookup();
     });
     //Clear
     clearButton.addEventListener("click", () => {
         context.clearRect(0, 0, canvas.width, canvas.height);
         canvas.style.backgroundColor = "#fff";
         points=[];
-        lookup();
     });
     window.onload = init();
 });
+
 /*window.addEventListener('resize', function () { 
     "use strict";
     window.location.reload(); 

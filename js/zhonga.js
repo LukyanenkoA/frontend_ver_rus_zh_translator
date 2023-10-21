@@ -1,7 +1,15 @@
+
 $(document).ready(function() {
 	var requests = [];
-	var results = $('kanji_info');
+	var results = $('.kanji_info');
+	$(document).on('drawV1.done', function(event) {
+		results.removeClass('active');
+		results.addClass('loading');
 
+		setTimeout(function() {
+			recognize(points)
+		}, 200);
+	});
 	function recognize(strokes) {
 		abortRequests();
 		if (strokes.length !== 0) {
@@ -11,24 +19,24 @@ $(document).ready(function() {
 
 			requests.push(
 				$.ajax({
-					url: 'https://www.zhonga.org/hwr/',
+					url: 'https://www.zhonga.ru/hwr/',
 					type: 'POST',
-					data: a + context + token,
+					data: a + q + context + token,
 					success: showResults,
 					error: showError
 				})
 			);
 		}
 		else {
-			results.removeClass('loading');
-			results.children('.kanji_info').eq(0).empty();
+			results.children('.kanji_info2').eq(0).empty();
 		}
 	}
 
 	function showResults(data) {
 		var kanji_info = JSON.parse(data);
 		if(kanji_info.length !== 0) {
-			results.children('.kanji_info').eq(0).empty();
+			results.removeClass('loading');
+			results.children('.kanji_info2').eq(0).empty();
 
 			$.each(kanji_info, function(i, character) {
 				var container = $('<div />', {
@@ -45,19 +53,19 @@ $(document).ready(function() {
 				$(container).append(value);
 				$(container).append(pinyin);
 
-				results.children('.kanji_info').eq(0).append(container);
+				results.children('.kanji_info2').eq(0).append(container);
 			});
 		}
 		else {
 			setTimeout(function() {
-				recognize(canvas.strokes)
+				recognize(points)
 			}, 2000);
 		}
 	}
 
 	function showError(xhr, status, error) {
 		if(status != 'abort') {
-			results.children('.kanji_info').eq(0).append(error);
+			results.children('.kanji_info2').eq(0).append(error);
 		}
 	}
 
@@ -67,12 +75,12 @@ $(document).ready(function() {
 		}
 	}
 
-	results.children('.kanji_info').on('click', function() {
+	results.children('.kanji_info2').on('click', function() {
 
 		$.ajax({
 			url: 'https://www.zhonga.org/hwr/train',
 			type: 'POST',
-			data: "q=" + $(this).text() + "\t" + JSON.stringify(canvas.strokes)
+			data: "q=" + $(this).text() + "\t" + JSON.stringify(points)
 		});
 	});
 
