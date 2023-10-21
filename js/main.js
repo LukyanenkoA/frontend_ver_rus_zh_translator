@@ -121,7 +121,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .catch(() => {
                 result.value = `Ошибка`;
             });
-        /*const url2 = "/api/words_rus/";
+        const url2 = "/api/words_rus/";
         fetch(`${url2}${inpWord}`)
             .then((response) => response.json())
             .then((data) => {
@@ -134,7 +134,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             })
             .catch(() => {
                 result.value = `Ошибка`;
-            });   */
+            });   
     });
 });
 
