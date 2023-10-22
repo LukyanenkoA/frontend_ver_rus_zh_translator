@@ -113,7 +113,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                if(data.pinyin!='undefined'){
+                if(data.pinyin){
                     result.value = result.value + `\n\n${data.english}`;
                     inp.value = `${inpWord} [${data.traditional}]\n/${data.pinyin}/`;
                 }
@@ -128,7 +128,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .then((data) => {
                 console.log(data);
                 
-                if(data.pinyin!='undefined'){
+                if(data.pinyin){
                     result.value = `${data.russian}`;
                 }
                 else
