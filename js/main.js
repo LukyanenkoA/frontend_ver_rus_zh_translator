@@ -108,7 +108,6 @@ window.addEventListener("DOMContentLoaded", function (event) {
     const inp = document.getElementById("text-input");
     b.addEventListener("click", () => {
         let inpWord = document.getElementById("text-input").value;
-        
         fetch(`${url2}${inpWord}`)
             .then((response) => response.json())
             .then((data) => {
@@ -117,8 +116,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
                     result.value = result.value + `\n\n${data.english}`;
                     inp.value = `${inpWord} [${data.traditional}]\n/${data.pinyin}/`;
                 }
-                else
-                    result.value = `Такого слова нет`;
+                else result.value = `Такого слова нет`;
             })
             .catch(() => {
                 result.value = `Ошибка`;
@@ -127,12 +125,10 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                
                 if(data.pinyin){
                     result.value = `${data.russian}`;
                 }
-                else
-                    result.value = `Такого слова нет`;
+                else result.value = `Такого слова нет`;
             })
             .catch(() => {
                 result.value = `Ошибка`;
