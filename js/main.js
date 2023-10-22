@@ -102,8 +102,8 @@ window.addEventListener("DOMContentLoaded", function (event) {
     
     removed 
     \nуровень hsk: ${data.hsk}*/
-    const url = "https://shoky13.ayarayarovich.tech/api/words_rus/";
-    const url2 = "https://shoky13.ayarayarovich.tech/api/words/";
+    const url = "/api/words_rus/";
+    const url2 = "/api/words/";
     const result = document.getElementById("output");
     const inp = document.getElementById("text-input");
     b.addEventListener("click", () => {
@@ -113,9 +113,12 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                result.value = result.value + `\n\n${data.english}`;
-                inp.value = `${inpWord} [${data.traditional}]\n/${data.pinyin}/`;
-
+                if(data.pinyin!='undefined'){
+                    result.value = result.value + `\n\n${data.english}`;
+                    inp.value = `${inpWord} [${data.traditional}]\n/${data.pinyin}/`;
+                }
+                else
+                    result.value = `Такого слова нет`;
             })
             .catch(() => {
                 result.value = `Ошибка`;
@@ -124,8 +127,12 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                result.value = `${data.russian}`;
-
+                
+                if(data.pinyin!='undefined'){
+                    result.value = `${data.russian}`;
+                }
+                else
+                    result.value = `Такого слова нет`;
             })
             .catch(() => {
                 result.value = `Ошибка`;
