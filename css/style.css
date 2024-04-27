@@ -36,9 +36,9 @@
     outline: none;
 }
 .container-fluid canvas{
-    height: 12em;
+    height: 400;
     background-color: white;
-    width: 17em;
+    width: 400;
     border-radius: 20px;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     font-size: 20px;
@@ -62,7 +62,7 @@
     border-color: #5DC8CD;
     color: #5DC8CD;
 }
-.tabs>#text-input, #drawkanji-canvas, #canvas-buttons{
+.tabs>#text-input, #drawkanji-canvas, #buttons, #output, #img_str{
     /* скрыть контент по умолчанию */
     display: none;
 }
@@ -102,7 +102,9 @@
 }
 #tab-btn-1:checked~#text-input,
 #tab-btn-2:checked~#drawkanji-canvas,
-#tab-btn-2:checked~#canvas-buttons {
+#tab-btn-2:checked~#buttons, 
+#tab-btn-3:checked~#output,
+#tab-btn-4:checked~#img_str{
   display: block;
 }
 .container-fluid .tabs>label:hover{
@@ -110,7 +112,7 @@
     background-color: #006064;
     color: #5DC8CD;
 }
-#drawkanji-clean-button,
+#drawkanji-clear-button,
 #drawkanji-back-line-button{
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
     background-color: powderblue;
@@ -119,10 +121,10 @@
     font-size: 16px;
     border-radius: 10px;
 }
-#canvas-buttons{
+#buttons{
     margin-top: 1em;
 }
-.container-fluid #drawkanji-clean-button:hover,
+.container-fluid #drawkanji-clear-button:hover,
 .container-fluid #drawkanji-back-line-button:hover{
     border-color: #5DC8CD;
     background-color: #006064;
