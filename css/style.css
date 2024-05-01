@@ -62,7 +62,7 @@
     border-color: #5DC8CD;
     color: #5DC8CD;
 }
-.tabs>#text-input, #drawkanji-canvas, #buttons, #output, #img_str{
+.tabs>#text-input, #header_for_kanji_info, #found_kanji, #drawkanji-canvas, #buttons, #output, #img_str{
     /* скрыть контент по умолчанию */
     display: none;
 }
@@ -102,6 +102,8 @@
 }
 #tab-btn-1:checked~#text-input,
 #tab-btn-2:checked~#drawkanji-canvas,
+#tab-btn-2:checked~#header_for_kanji_info,
+#tab-btn-2:checked~#found_kanji,
 #tab-btn-2:checked~#buttons, 
 #tab-btn-3:checked~#output,
 #tab-btn-4:checked~#img_str{

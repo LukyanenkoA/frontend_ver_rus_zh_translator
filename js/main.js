@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
     const url = "http://127.0.0.1:8000/words_rus/";
     const url2 = "http://127.0.0.1:8000/words/";
     const result = document.getElementById("output");
-    const str = this.document.getElementsByClassName("kanji_info2");
+    const img = document.getElementById("img_str");
     const inp = document.getElementById("text-input");
     b.addEventListener("click", () => {
         let inpWord = document.getElementById("text-input").value;
@@ -44,16 +44,6 @@ window.addEventListener("DOMContentLoaded", function (event) {
             .catch(() => {
                 result.value = `Ошибка`;
             });         
-        fetch(`http://bishun.strokeorder.info/mandarin.php?q=${inpWord}`)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                strinnerHTML = ``;
-                str.innerHTML =`<img src="http://bishun.strokeorder.info/characters/428918.gif" alt="str" height="100" width="100">`;
-            })
-            .catch(() => {
-                str.value = `Ошибка`;
-            }); 
     });
 });
 

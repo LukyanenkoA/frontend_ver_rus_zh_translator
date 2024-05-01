@@ -32,18 +32,13 @@
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-md-4 p-1 d-flex justify-content-center">
                 <div class="position-relative tabs">
-                    <input type="radio" name="tab-btn" id="tab-btn-1" value="">
+                    <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
                     <label for="tab-btn-1">Напечатать</label>
-                    <input type="radio" name="tab-btn" id="tab-btn-2" value="" checked>
+                    <input type="radio" name="tab-btn" id="tab-btn-2" value="">
                     <label for="tab-btn-2">Нарисовать</label>
                     <textarea id="text-input" placeholder="Введите слово на китайском"></textarea>
                     <canvas width="300" height="300" id="drawkanji-canvas" class="drawkanji-canvas"></canvas>
                     <p id="header_for_kanji_info">Найденные иероглифы</p>
-                    <!--<div class="kanji_info" lang="zh">
-                        <div class="kanji_info2" lang="zh">
-                            我 找 浅 钱 批
-                        </div>
-                    </div>-->
                     <div id='found_kanji'>
                     </div>
                     <div id="buttons">
@@ -59,13 +54,12 @@
             </div>
             <div class="col-sm-12 col-md-4 p-1 d-flex justify-content-center">
                 <div class="position-relative tabs">
-                    <input type="radio" name="!tab-btn" id="tab-btn-3" value="" checked>
+                    <input type="radio" name="!tab-btn" id="tab-btn-3" value="">
                     <label for="tab-btn-3">Перевод</label>
-                    <input type="radio" name="!tab-btn" id="tab-btn-4" value="">
+                    <input type="radio" name="!tab-btn" id="tab-btn-4" value="" checked>
                     <label for="tab-btn-4">Порядок черт</label>
                     <textarea id="output" placeholder="Перевод слова"></textarea>
-                    <img src="http://bishun.strokeorder.info/characters/928304.gif" id="img_str" alt="str" height="250" width="250">
-                    <!--<button class="result" id="result"></button>-->
+                    <img src="http://127.0.0.1:8000/stroke-order?q=uhtans" id="img_str" alt="str" height="250" width="250">
                 </div>
             </div>
         </div>
