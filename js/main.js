@@ -15,9 +15,10 @@ window.addEventListener("DOMContentLoaded", function (event) {
     const url = "http://127.0.0.1:8000/words_rus/";
     const url2 = "http://127.0.0.1:8000/words/";
     const result = document.getElementById("output");
-    const img = document.getElementById("img_str");
     const inp = document.getElementById("text-input");
     b.addEventListener("click", () => {
+        const img = document.getElementById("img_str");
+        img.src = "http://127.0.0.1:8000/stroke-order?q="+`${document.getElementById('text-input').value[0]}`
         let inpWord = document.getElementById("text-input").value;
         fetch(`${url2}${inpWord}`)
             .then((response) => response.json())
