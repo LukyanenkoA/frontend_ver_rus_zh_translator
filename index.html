@@ -4,7 +4,7 @@
     <link rel="icon" href="favicon.ico"><!-- 32×32 -->
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width initial-scale=1,shrink-to-fit=no">
-    <title lang="rus">Китайско-русский словарь</title>
+    <title lang="rus" key="title">Китайско-русский словарь</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -16,16 +16,21 @@
     <script type="text/javascript" src="js/hanzi-13.js"></script>
     <script type="text/javascript" src="js/canvas-13.js"></script>
     <script type="text/javascript" src="js/draw-13.js"></script>
+    <script type="text/javascript" src="js/multilang.js"></script>
 </head>
 <body onload='hanzi_onload ()'>
-    <div class="container-fluid">
+    <div class="container-fluid">   
+        <header>
+            <ul>
+                <li style="display:inline" class="header-item-lang-ru"><button id="ru" class="translate" style="background-image: url('./ru.png')"></button></li>
+                <li  style="display:inline" class="header-item-lang-zh"><button id="zh" class="translate"  style="background-image: url('./zh.jpg')"></button></li>
+                </ul>
+        </header>
         <div class="header">
             <div class="container">
                 <div class="description text-center">
-                    <h2 lang="rus">Китайско-русский словарь</h2>
-                    <!--<h2 lang="zh">俄汉词典</h2>-->
-                    <h4 lang="rus">Автор Шоки</h4>
-                    <!--<h4 lang="zh">由瘦刻意</h4>-->
+                    <h2 lang="rus, zh" class="lang" key="title">Китайско-русский словарь</h2>
+                    <h4 lang="rus, zh" class="lang" key="author">Автор Шоки</h4>
                 </div>
             </div>
         </div>
@@ -33,33 +38,33 @@
             <div class="col-sm-12 col-md-4 p-1 d-flex justify-content-center">
                 <div class="position-relative tabs">
                     <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
-                    <label for="tab-btn-1">Напечатать</label>
+                    <label for="tab-btn-1" class="lang" key="print">Напечатать</label>
                     <input type="radio" name="tab-btn" id="tab-btn-2" value="">
-                    <label for="tab-btn-2">Нарисовать</label>
+                    <label for="tab-btn-2" class="lang" key="draw">Нарисовать</label>
                     <textarea id="text-input" placeholder="Введите слово на китайском"></textarea>
                     <canvas width="300" height="300" id="drawkanji-canvas" class="drawkanji-canvas"></canvas>
-                    <p id="header_for_kanji_info">Найденные иероглифы</p>
+                    <p id="header_for_kanji_info" class="lang" key="found_kanji">Найденные иероглифы</p>
                     <div id='found_kanji'>
                     </div>
                     <div id="buttons">
                         <div id="draw-controls">
-                        <button class="control" id="drawkanji-clear-button" type="submit"><span class="icon">×</span>Очистить</button>
-                        <button class="control" id="drawkanji-back-line-button" type="submit"><span class="icon">⟲</span> Убрать последнюю черту</button>
+                        <button class="control lang" id="drawkanji-clear-button" type="submit" key="clear">Очистить</button>
+                        <button class="control lang" id="drawkanji-back-line-button" type="submit" key="undo">Убрать последнюю черту</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-2 p-1 d-flex justify-content-center position-relative">
-                <button id="btnTranslate" type="button" class="position-absolute top-50 start-50 translate-middle btn btn-translate">Перевести</button>
+                <button id="btnTranslate" type="button" class="position-absolute top-50 start-50 translate-middle btn btn-translate lang" key="translate">Перевести</button>
             </div>
             <div class="col-sm-12 col-md-4 p-1 d-flex justify-content-center">
                 <div class="position-relative tabs">
-                    <input type="radio" name="!tab-btn" id="tab-btn-3" value="">
-                    <label for="tab-btn-3">Перевод</label>
-                    <input type="radio" name="!tab-btn" id="tab-btn-4" value="" checked>
-                    <label for="tab-btn-4">Порядок черт</label>
+                    <input type="radio" name="!tab-btn" id="tab-btn-3" value="" checked>
+                    <label for="tab-btn-3" class="lang" key="translated">Перевод</label>
+                    <input type="radio" name="!tab-btn" id="tab-btn-4" value="">
+                    <label for="tab-btn-4" class="lang"key=stroke_order>Порядок черт</label>
                     <textarea id="output" placeholder="Перевод слова"></textarea>
-                    <img src="./empty.jpg" id="img_str" alt="str" height="250" width="250">
+                    <img src="./empty.jpg" id="img_str" alt="str" height="300" width="300">
                 </div>
             </div>
         </div>
