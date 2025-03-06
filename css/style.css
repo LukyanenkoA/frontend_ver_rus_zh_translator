@@ -14,7 +14,7 @@
 .p-1{
     margin-bottom: 3em;
 }
-.container-fluid textarea{
+.container-fluid textarea {
     height: 12em;
     width: 17em;
     color: #006064;
@@ -75,7 +75,7 @@
     border-color: #5DC8CD;
     color: #5DC8CD;
 }
-.tabs>#text-input, #header_for_kanji_info, #found_kanji, #drawkanji-canvas, #buttons, #output, #img_str{
+.tabs>#text-input, #additional-info , #header_for_kanji_info, #found_kanji, #drawkanji-canvas, #buttons, #output, #img_str{
     /* скрыть контент по умолчанию */
     display: none;
 }
@@ -114,6 +114,7 @@
     border-bottom: 1px solid powderblue;
 }
 #tab-btn-1:checked~#text-input,
+#tab-btn-1:checked~#additional-info,
 #tab-btn-2:checked~#drawkanji-canvas,
 #tab-btn-2:checked~#header_for_kanji_info,
 #tab-btn-2:checked~#found_kanji,
@@ -153,6 +154,11 @@
 }
 .no-scroll{
     position: fixed;
+}
+#additional-info {
+    font-size: 20px; 
+    color: #006064;
+    text-align: center; 
 }
 
 @media (max-width: 768px) {
