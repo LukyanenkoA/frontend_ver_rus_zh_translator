@@ -10,6 +10,7 @@ var arrLang = {
       'translate': 'Перевести',
       'translated': 'Перевод',
       'stroke_order': 'Порядок черт',
+      'audio':'Ваш браузер не поддерживает элемент audio'
     },
     'zh': {
         'title': '汉俄词典',
@@ -22,6 +23,7 @@ var arrLang = {
         'translate': '翻译',
         'translated': '翻译的',
         'stroke_order': '笔顺',
+        'audio':'您的浏览器不支持音频元素.'
     }
   }
   

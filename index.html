@@ -13,6 +13,7 @@
     <script type="text/javascript" src="js/zhonga.js"></script>-->
     <script type="text/javascript" src='js/main.js'></script>
 
+    <script type="text/javascript" src='js/micro.js'></script>
     <script type="text/javascript" src="js/hanzi-13.js"></script>
     <script type="text/javascript" src="js/canvas-13.js"></script>
     <script type="text/javascript" src="js/draw-13.js"></script>
@@ -41,8 +42,18 @@
                     <label for="tab-btn-1" class="lang" key="print">Напечатать</label>
                     <input type="radio" name="tab-btn" id="tab-btn-2" value="">
                     <label for="tab-btn-2" class="lang" key="draw">Нарисовать</label>
-                    <textarea id="text-input" placeholder="Введите слово на китайском"></textarea>
+                    <textarea id="text-input" placeholder="Введите текст или слово на китайском"></textarea>
                     <div id="additional-info"></div>
+                    <div class="audio-player" id="audio-player1">
+                        <audio  id="audio1" controls key="audio">
+                            <source  id="audio-source1" src="" type="audio/mpeg">
+                            Ваш браузер не поддерживает элемент audio
+                        </audio>
+                        <div class="play-button" id="play-button1"></div>
+                        <button id="microphone">
+                            <input type="hidden" id="speech-to-text">
+                        </button>
+                    </div>
                     <canvas width="300" height="300" id="drawkanji-canvas" class="drawkanji-canvas"></canvas>
                     <p id="header_for_kanji_info" class="lang" key="found_kanji">Найденные иероглифы</p>
                     <div id='found_kanji'>
@@ -64,7 +75,14 @@
                     <label for="tab-btn-3" class="lang" key="translated">Перевод</label>
                     <input type="radio" name="!tab-btn" id="tab-btn-4" value="">
                     <label for="tab-btn-4" class="lang"key=stroke_order>Порядок черт</label>
-                    <textarea id="output" placeholder="Перевод слова"></textarea>
+                    <textarea id="output" placeholder="Перевод"></textarea>
+                    <div class="audio-player" id="audio-player2">
+                        <audio  id="audio2" controls key="audio">
+                            <source id="audio-source2" type="audio/mpeg">
+                            Ваш браузер не поддерживает элемент audio
+                        </audio>
+                        <div class="play-button" id="play-button2"></div>
+                    </div>
                     <img src="./empty.jpg" id="img_str" alt="str" height="300" width="300">
                 </div>
             </div>
@@ -90,12 +108,12 @@
         });
         var data = {
                 'ru': {
-                    'text-input': 'Введите слово на китайском',
-                    'output': 'Перевод слова'
+                    'text-input': 'Введите текст или слово на китайском',
+                    'output': 'Перевод'
                 },
                 'zh': {
-                    'text-input': '用中文输入一个单词',
-                    'output': '翻译的单词'
+                    'text-input': '用中文输入课文或单词',
+                    'output': '翻译的'
                 }
             }
     </script>

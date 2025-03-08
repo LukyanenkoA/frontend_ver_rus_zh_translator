@@ -1,4 +1,4 @@
-function translate() {
+/*function translate() {
     if (document.getElementById('tab-btn-1').checked) {
         // Text input radio button is checked
         let info = document.getElementById('text-input').value;
@@ -7,21 +7,153 @@ function translate() {
         // Draw input radio button is checked
         document.getElementById('output').value = 'перевод нарисованного иероглифа';
     }
-}
+}*/
 
 window.addEventListener("DOMContentLoaded", function (event) {
     console.log("DOM fully loaded and parsed");
+    const result = document.getElementById("output");
+    const inp = document.getElementById("text-input");
+
+    async function generateSpeechForChinese() {
+        const text = inp.value.trim();
+        const requestData = {
+            //text: "哈喽, 你最近怎么样?",  //Текст для генерации речи
+            //text: "I love pompompoms", // Текст для генерации речи
+            text: text, 
+            voice_id: 20299, 
+            language: 2,  
+            gender: 2,    
+            age: 0       
+        };
+        // Проверяем, что текст не пустой
+        if (!text) {
+            alert('Пожалуйста, введите текст для генерации речи.');
+            return;
+        }
+
+        try {
+            // Отправляем POST запрос на сервер для генерации речи
+            const response = await fetch('http://127.0.0.1:8000/tts/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка при генерации речи');
+            }
+
+            const data = await response.json();
+            const taskId = data.task_id;
+
+            // Теперь получаем аудиофайл
+            const audioResponse = await fetch(`http://127.0.0.1:8000/tts/play/${taskId}`);
+            if (!audioResponse.ok) {
+                throw new Error('Ошибка при получении аудиофайла');
+            }
+
+            const audioBlob = await audioResponse.blob();
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+            // Обновляем источник аудио и воспроизводим
+            const audioElement = document.getElementById('audio1');
+            const audioSource = document.getElementById('audio-source1');
+            audioSource.src = audioUrl;
+            audioElement.load(); // Перезагружаем аудиоплеер
+            audioElement.play(); // Автоматически воспроизводим аудио
+        } catch (error) {
+            console.error('Произошла ошибка:', error);
+            alert('Произошла ошибка при обработке запроса.'); // Уведомление об ошибке
+        }
+    }
+    async function generateSpeechForRussian() {
+        const text = result.value.trim();
+        const requestData = {
+            text: text, 
+            voice_id: 20299,  
+            language: 1,  
+            gender: 2,    
+            age: 0        
+        };
+        // Проверяем, что текст не пустой
+        if (!text) {
+            alert('Пожалуйста, введите текст для генерации речи.');
+            return;
+        }
+
+        try {
+            // Отправляем POST запрос на сервер для генерации речи
+            const response = await fetch('http://127.0.0.1:8000/tts/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка при генерации речи');
+            }
+
+            const data = await response.json();
+            const taskId = data.task_id;
+
+            // Теперь получаем аудиофайл
+            const audioResponse = await fetch(`http://127.0.0.1:8000/tts/play/${taskId}`);
+            if (!audioResponse.ok) {
+                throw new Error('Ошибка при получении аудиофайла');
+            }
+
+            const audioBlob = await audioResponse.blob();
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+            // Обновляем источник аудио и воспроизводим
+            const audioElement = document.getElementById('audio2');
+            const audioSource = document.getElementById('audio-source2');
+            audioSource.src = audioUrl;
+            audioElement.load(); // Перезагружаем аудиоплеер
+            audioElement.play(); // Автоматически воспроизводим аудио
+        } catch (error) {
+            console.error('Произошла ошибка:', error);
+            alert('Произошла ошибка при обработке запроса.'); // Уведомление об ошибке
+        }
+    }
+    const audio1 = document.getElementById('audio1');
+    function toggleAudio1() {
+        if (audio1.paused) {
+            audio1.play();
+        } else {
+            audio1.pause();
+        }
+    }
+    const audio2 = document.getElementById('audio2');
+    function toggleAudio2() {
+        if (audio2.paused) {
+            audio2.play();
+        } else {
+            audio2.pause();
+        }
+    }
+    const playButton1 = document.getElementById('play-button1');
+    playButton1.addEventListener("click", toggleAudio1);
+    const playButton2 = document.getElementById('play-button2');
+    playButton2.addEventListener("click", toggleAudio2);
+    const generateButtonZh = document.getElementById('play-button1');
+    generateButtonZh.addEventListener('click', generateSpeechForChinese);
+    
+    const generateButtonRU = document.getElementById('play-button2');
+    generateButtonRU.addEventListener('click', generateSpeechForRussian);
+    
     let b = document.getElementById('btnTranslate');
     const url = "http://127.0.0.1:8000/words_rus/";
     const url2 = "http://127.0.0.1:8000/words/";
-    const result = document.getElementById("output");
-    const inp = document.getElementById("text-input");
     const addInf = document.getElementById("additional-info");
 
     b.addEventListener("click", () => {
         const img = document.getElementById("img_str"); 
         let inputText = inp.value.trim();
-
 
         // Check if the word exists
         fetch(`http://127.0.0.1:8000/words/${encodeURIComponent(inputText)}`)
@@ -51,7 +183,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
                         .then((response) => response.json())
                         .then((data) => {
                             if (data.russian) {
-                                result.value += `${data.russian}\n`;
+                                result.value += `${data.russian}`;
                             } else {
                                 result.value = `Такого слова "${inputText}" нет\n`;
                             }
@@ -69,6 +201,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
                         .then((data) => {
                             if (data.translated_text) {
                                 console.log('2')
+                                //document.getElementById('audio-player2').style.visibility = 'visible';
                                 result.value = `${data.translated_text}\n`;
                             } else {
                                 result.value = `Не удалось перевести текст: "${inputText}"\n`;
