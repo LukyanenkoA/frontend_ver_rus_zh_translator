@@ -154,6 +154,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
     b.addEventListener("click", () => {
         const img = document.getElementById("img_str"); 
         let inputText = inp.value.trim();
+        addInf.textContent = '';
 
         // Check if the word exists
         fetch(`http://127.0.0.1:8000/words/${encodeURIComponent(inputText)}`)

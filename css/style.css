@@ -173,7 +173,7 @@
     cursor: pointer;
     width: 20px; /* Ширина значка */
     height: 20px; /* Высота значка */
-    background: url('volume.png') no-repeat center center; /* Путь к вашему значку */
+    background: url('../volume.png') no-repeat center center; /* Путь к вашему значку */
     background-size: contain; /* Масштабируем значок */
     float: inline-end;
     margin-right: 10px;
@@ -185,7 +185,7 @@
     cursor: pointer;
     width: 20px; /* Ширина значка */
     height: 20px; /* Высота значка */
-    background: url('microphone.png') no-repeat center center; /* Путь к вашему значку */
+    background: url('../microphone.png') no-repeat center center; /* Путь к вашему значку */
     background-size: contain; /* Масштабируем значок */
     float: inline-end;
     margin-right: 10px;
