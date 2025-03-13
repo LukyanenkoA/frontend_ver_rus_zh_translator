@@ -63,6 +63,23 @@ window.addEventListener("DOMContentLoaded", function (event) {
             audioSource.src = audioUrl;
             audioElement.load(); // Перезагружаем аудиоплеер
             audioElement.play(); // Автоматически воспроизводим аудио
+            const audioElement = document.getElementById('audio');
+            const audioSource = document.getElementById('audio-source');
+            // Проверяем, играет ли аудио в данный момент
+            if (!audioElement.paused) {
+                audioElement.pause(); // Останавливаем текущее воспроизведение
+            }
+            audioSource.src = audioUrl;
+            audioElement.load(); // Перезагружаем аудиоплеер
+                // Обрабатываем promise от play
+            const playPromise = audioElement.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Audio is playing');
+                }).catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            }
         } catch (error) {
             console.error('Произошла ошибка:', error);
             alert('Произошла ошибка при обработке запроса.'); // Уведомление об ошибке
@@ -112,6 +129,8 @@ window.addEventListener("DOMContentLoaded", function (event) {
             // Обновляем источник аудио и воспроизводим
             const audioElement = document.getElementById('audio2');
             const audioSource = document.getElementById('audio-source2');
+            const audioElement = document.getElementById('audio');
+            const audioSource = document.getElementById('audio-source');
             audioSource.src = audioUrl;
             audioElement.load(); // Перезагружаем аудиоплеер
             audioElement.play(); // Автоматически воспроизводим аудио
@@ -140,6 +159,20 @@ window.addEventListener("DOMContentLoaded", function (event) {
     playButton1.addEventListener("click", toggleAudio1);
     const playButton2 = document.getElementById('play-button2');
     playButton2.addEventListener("click", toggleAudio2);
+    const audio = document.getElementById('audio');
+    function toggleAudio() {
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }
+    const playButtons = document.getElementsByClassName('play-button');
+
+    // Добавляем обработчик события для каждой кнопки
+    for (let b of playButtons) {
+        b.addEventListener("click", toggleAudio);
+    }
     const generateButtonZh = document.getElementById('play-button1');
     generateButtonZh.addEventListener('click', generateSpeechForChinese);
     
