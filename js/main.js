@@ -62,10 +62,9 @@ window.addEventListener("DOMContentLoaded", function (event) {
             // Обновляем источник аудио и воспроизводим
             const audioElement = document.getElementById('audio1');
             const audioSource = document.getElementById('audio-source1');
-            
-            audioElement.load(); // Перезагружаем аудиоплеер
             audioSource.src = audioUrl;
             
+            audioElement.load(); // Перезагружаем аудиоплеер            
             audioElement.play();  
         } catch (error) {
             console.error('Произошла ошибка:', error);
