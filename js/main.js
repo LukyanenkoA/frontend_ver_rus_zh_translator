@@ -64,7 +64,6 @@ window.addEventListener("DOMContentLoaded", function (event) {
             const audioSource = document.getElementById('audio-source1');
             
             audioElement.load(); // Перезагружаем аудиоплеер
-            audioSource.src = "";
             audioSource.src = audioUrl;
             
             audioElement.play();  
@@ -125,7 +124,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             alert('Произошла ошибка при обработке запроса.'); // Уведомление об ошибке
         }
     }
-    const audio1 = document.getElementById('audio1');
+    /*const audio1 = document.getElementById('audio1');
     function toggleAudio1() {
         if (audio1.paused) {
             audio1.play();
@@ -145,7 +144,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
     playButton1.addEventListener("click", toggleAudio1);
     const playButton2 = document.getElementById('play-button2');
     playButton2.addEventListener("click", toggleAudio2);
-
+    */
     const generateButtonZh = document.getElementById('play-button1');
     generateButtonZh.addEventListener('click', generateSpeechForChinese);
     
