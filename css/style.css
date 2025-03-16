@@ -192,9 +192,6 @@
     border: none;
 }
 #microphone.active {
-    background-color: #006064; /* Красный цвет при нажатии */
-    color: white;
-  }
     background: url('volume.png') no-repeat center center; /* Путь к вашему значку */
     background-size: contain; /* Масштабируем значок */
     float: inline-end;
