@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     microphoneButton.onclick = async () => {
         if (!isRecording) {
             // Если не записываем, начинаем запись
-            socket = new WebSocket("ws://api.translate.shoky.ru/ws");
+            socket = new WebSocket("wss://api.translate.shoky.ru/ws");
 
             socket.onopen = async () => {
                 console.log("WebSocket соединение установлено.");
