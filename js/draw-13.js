@@ -38,7 +38,7 @@ if(this.xmlhttp.readyState==1||this.xmlhttp.readyState==2||this.xmlhttp.readySta
 this.xmlhttp.open("POST",cgi,true);var self=this;this.xmlhttp.onreadystatechange=function(){if(self.xmlhttp.readyState==4){if(self.xmlhttp.status==200){callback(self.xmlhttp.responseText);}}}
 this.xmlhttp.send(sendmessage);}
 function supports_html5_storage(){try{return'localStorage'in window&&window['localStorage']!==null;}catch(e){return false;}}
-var hwcgi='http://127.0.0.1:8000/goqhanzi';var drawkanji;function message(text)
+var hwcgi='https://api.translate.shoky.ru/goqhanzi';var drawkanji;function message(text)
 {var found_kanji=getbyid("found_kanji");clear(found_kanji)
 error=create_node("span",found_kanji);error.classList.add("error");append_text(error,text);}
 function drawkanji_onload()

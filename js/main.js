@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             var isPlaying = false;
 
             // Отправляем POST запрос на сервер для генерации речи
-            const response = await fetch('http://127.0.0.1:8000/tts/', {
+            const response = await fetch('https://api.translate.shoky.ru/tts/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             const taskId = data.task_id;
 
             // Теперь получаем аудиофайл
-            const audioResponse = await fetch(`http://127.0.0.1:8000/tts/play/${taskId}`);
+            const audioResponse = await fetch(`https://api.translate.shoky.ru/tts/play/${taskId}`);
             if (!audioResponse.ok) {
                 throw new Error('Ошибка при получении аудиофайла');
             }
@@ -88,7 +88,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
 
         try {
             // Отправляем POST запрос на сервер для генерации речи
-            const response = await fetch('http://127.0.0.1:8000/tts/', {
+            const response = await fetch('https://api.translate.shoky.ru/tts/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ window.addEventListener("DOMContentLoaded", function (event) {
             const taskId = data.task_id;
 
             // Теперь получаем аудиофайл
-            const audioResponse = await fetch(`http://127.0.0.1:8000/tts/play/${taskId}`);
+            const audioResponse = await fetch(`https://api.translate.shoky.ru/tts/play/${taskId}`);
             if (!audioResponse.ok) {
                 throw new Error('Ошибка при получении аудиофайла');
             }
@@ -151,8 +151,8 @@ window.addEventListener("DOMContentLoaded", function (event) {
     generateButtonRU.addEventListener('click', generateSpeechForRussian);
     
     let b = document.getElementById('btnTranslate');
-    const url = "http://127.0.0.1:8000/words_rus/";
-    const url2 = "http://127.0.0.1:8000/words/";
+    const url = "https://api.translate.shoky.ru/words_rus/";
+    const url2 = "https://api.translate.shoky.ru/words/";
     const addInf = document.getElementById("additional-info");
 
     b.addEventListener("click", () => {
@@ -161,11 +161,11 @@ window.addEventListener("DOMContentLoaded", function (event) {
         addInf.textContent = '';
 
         // Check if the word exists
-        fetch(`http://127.0.0.1:8000/words/${encodeURIComponent(inputText)}`)
+        fetch(`https://api.translate.shoky.ru/words/${encodeURIComponent(inputText)}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data.pinyin) {
-                    img.src = "http://127.0.0.1:8000/stroke-order?q=" + `${inputText[0]}`; // Use the first character for the image
+                    img.src = "https://api.translate.shoky.ru/stroke-order?q=" + `${inputText[0]}`; // Use the first character for the image
 
                     // Fetch word details
                     fetch(`${url2}${inputText}`)
@@ -198,10 +198,10 @@ window.addEventListener("DOMContentLoaded", function (event) {
                         });
                 } else {
                     // If the word doesn't exist, treat it as a phrase and translate it
-                    img.src = "http://127.0.0.1:8000/stroke-order?q=" + `${inputText[0]}`; // Use the first character for the image
+                    img.src = "https://api.translate.shoky.ru/stroke-order?q=" + `${inputText[0]}`; // Use the first character for the image
 
                     // Fetch translation
-                    fetch(`http://127.0.0.1:8000/translate/?text=${encodeURIComponent(inputText)}`)
+                    fetch(`https://api.translate.shoky.ru/translate/?text=${encodeURIComponent(inputText)}`)
                         .then((response) => response.json())
                         .then((data) => {
                             if (data.translated_text) {
