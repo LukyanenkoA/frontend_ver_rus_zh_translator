@@ -38,6 +38,7 @@ DrawCanvas.prototype.draw_text=function(x,y,text)
     x-=6;
     y+=6;
     this.context.font="bold 12pt sans-serif";
-    this.context.fillStyle=this.colour;this.context.fillText(text,x,y);
+    this.context.fillStyle=this.colour;
+    this.context.fillText(text,x,y);
 }
 

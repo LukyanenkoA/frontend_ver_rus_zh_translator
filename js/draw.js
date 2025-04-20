@@ -161,20 +161,18 @@ window.addEventListener("DOMContentLoaded", function (event) {
 
 	function onTouchMove(c) {
 		try {
-			let e, d, a;
-			a = document.getElementById("drawkanji-canvas");
-			e = getY(a);
-			d = getX(a);
-			c.preventDefault();
-			drawLine(lastX, lastY, c.touches[0].clientX - d + document.body.scrollLeft, c.touches[0].clientY - e + document.body.scrollTop);
-			lastX = c.touches[0].clientX;
-			lastY = c.touches[0].clientY;
-			lastX = lastX - d + document.body.scrollLeft;
-			lastY = lastY - e + document.body.scrollTop
+		  let rect = document.getElementById("drawkanji-canvas").getBoundingClientRect();
+		  let x = c.touches[0].clientX - rect.left;
+		  let y = c.touches[0].clientY - rect.top;
+		  c.preventDefault();
+		  drawLine(lastX, lastY, x, y);
+		  lastX = x;
+		  lastY = y;
 		} catch (b) {
-			alert(b.description)
+		  alert(b.message); // description устарел, используйте message
 		}
-	}
+	  }
+	  
 
 	function drawRound(a, b) {
 		context.fillStyle = "#000000";
