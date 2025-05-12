@@ -223,5 +223,11 @@ function delete_save_cookie()
 DrawKanji.prototype.adjust_canvas_offsets=function()
 {var offset_left=0;var offset_top=0;for(var o=this.canvas.element;o;o=o.offsetParent){offset_left+=o.offsetLeft;offset_top+=o.offsetTop;}
 this.canvas.offset_left=offset_left;this.canvas.offset_top=offset_top;this.canvas.clear();this.drawAll();}
-DrawKanji.prototype.canvas_adjust=function(absolute)
-{var relative=new Object();relative.x=absolute.x-this.canvas.offset_left;relative.y=absolute.y-this.canvas.offset_top;return relative;}
+DrawKanji.prototype.canvas_adjust = function(absolute) {
+    var rect = this.canvas.element.getBoundingClientRect();
+    var relative = {
+        x: absolute.x - rect.left,
+        y: absolute.y - rect.top
+    };
+    return relative;
+};
