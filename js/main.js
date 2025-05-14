@@ -198,7 +198,9 @@ window.addEventListener("DOMContentLoaded", function (event) {
                         });
                 } else {
                     // If the word doesn't exist, treat it as a phrase and translate it
-                    img.src = "https://api.translate.shoky.ru/stroke-order?q=" + `${inputText[0]}`; // Use the first character for the image
+                    if (!/^[A-Za-z]+$/.test(inputText)) {
+                        img.src = "https://api.translate.shoky.ru/stroke-order?q=" + `${inputText[0]}`; // Use the first character for the image
+                    }
 
                     // Fetch translation
                     fetch(`https://api.translate.shoky.ru/translate/?text=${encodeURIComponent(inputText)}`)
