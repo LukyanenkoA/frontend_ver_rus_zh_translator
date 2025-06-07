@@ -179,9 +179,8 @@ this.trace(pos);}
 let initialScrollY = 0;
 function get_touch_position(event) {
     var touchobj = event.changedTouches[0];
-    var x = touchobj.pageX;
-    var y = touchobj.pageY;
-    // Adjust for scroll position
+    var x = touchobj.clientX; // Используем clientX
+    var y = touchobj.clientY; // Используем clientY
     return { "x": x, "y": y };
 }
 DrawKanji.prototype.touch_start = function(event) {
@@ -192,12 +191,12 @@ DrawKanji.prototype.touch_start = function(event) {
 };
 DrawKanji.prototype.touch_trace = function(event) {
     if (!this.active) {
-        return; // Exit if not active
+        return;
     }
-    var orig = get_touch_position(event); // Get original touch position
-    var pos = this.canvas_adjust(orig, initialScrollY); // Adjust coordinates based on canvas and scroll
-    this.trace(pos); // Trace the position
-    event.preventDefault(); // Prevent default touch behavior
+    var orig = get_touch_position(event);
+    var pos = this.canvas_adjust(orig);
+    this.trace(pos);
+    event.preventDefault();
 };
 DrawKanji.prototype.makeMessage=function(c)
 {var r=c;r+=" ";for(var i=0;i<this.sequence.length;++i){for(var j=0;j<this.sequence[i].length;++j){r+=base36(this.sequence[i][j].x)
@@ -246,7 +245,7 @@ DrawKanji.prototype.canvas_adjust = function(absolute) {
     var rect = this.canvas.element.getBoundingClientRect();
     var relative = {
         x: absolute.x - rect.left,
-        y: absolute.y - rect.top + scrollY 
+        y: absolute.y - rect.top
     };
     return relative;
 };
